@@ -13,55 +13,76 @@
 
 <web-app> <!-- Root tag - <web-app> -->
 	<display-name>Archetype Created Web Application</display-name>
+	
+	<context-param>
+		<param-name>appparam</param-name>
+		<param-value>appvalue</param-value>
+	</context-param>
+
 
 	<servlet>
 		<!-- web.xml identifier - can be arbitrary -->
 		<servlet-name>HelloServlet</servlet-name>
 		<servlet-class>com.revature.servlets.HelloServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet>
 		<servlet-name>EchoServlet</servlet-name>
 		<servlet-class>com.revature.servlets.EchoServlet</servlet-class>
 	</servlet>
-	
+
 	<servlet>
 		<servlet-name>MyHttpServlet</servlet-name>
 		<servlet-class>com.revature.servlets.MyHttpServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>FormServlet</servlet-name>
+		<servlet-class>com.revature.servlets.FormServlet</servlet-class>
+	</servlet>
 	
+	<servlet>
+		<servlet-name>SessionServlet</servlet-name>
+		<servlet-class>com.revature.servlets.SessionServlet</servlet-class>
+		<init-param>
+			<param-name>servletparam</param-name>
+			<param-value>servletvalue</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>SessionServlet</servlet-name>
+		<url-pattern>/session</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>FormServlet</servlet-name>
+		<url-pattern>/form</url-pattern>
+	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>MyHttpServlet</servlet-name>
 		<url-pattern>/http</url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 	<servlet-mapping>
 		<servlet-name>EchoServlet</servlet-name>
 		<url-pattern>/echo</url-pattern>
 	</servlet-mapping>
 
-	<!-- The mapping of a request to a servlet involves TWO separate 
-		mappings. One for the servlet application and then one for
-		the servlets contained within that application! 
-		The application mapping is done within tomcat's configuration
-		and is NOT a part of the web.xml. If you forget this, you will
-		drive yourself absolutely completely crazy wondering why none
-		your requests are working. By default this context is the name
-		of the application itself.
-		
-		Given this, a valid URL for mapping to the HelloServlet would 
-		look like this:
-		
-		http://localhost:8080/second-webapp/hello
-		
-		-->
+	<!-- The mapping of a request to a servlet involves TWO separate mappings. 
+		One for the servlet application and then one for the servlets contained within 
+		that application! The application mapping is done within tomcat's configuration 
+		and is NOT a part of the web.xml. If you forget this, you will drive yourself 
+		absolutely completely crazy wondering why none your requests are working. 
+		By default this context is the name of the application itself. Given this, 
+		a valid URL for mapping to the HelloServlet would look like this: http://localhost:8080/second-webapp/hello -->
 
 	<servlet-mapping>
 		<!-- Identifier matching some servlet defined in the <servlet> tag -->
 		<servlet-name>HelloServlet</servlet-name>
-		<!-- string pattern used to delegate requests to the mapped
-			servlet  -->
+		<!-- string pattern used to delegate requests to the mapped servlet -->
 		<url-pattern>/hello/*</url-pattern>
 	</servlet-mapping>
 </web-app>
