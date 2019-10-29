@@ -20,6 +20,27 @@
 		<servlet-class>com.revature.servlets.HelloServlet</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>EchoServlet</servlet-name>
+		<servlet-class>com.revature.servlets.EchoServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>MyHttpServlet</servlet-name>
+		<servlet-class>com.revature.servlets.MyHttpServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>MyHttpServlet</servlet-name>
+		<url-pattern>/http</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet-mapping>
+		<servlet-name>EchoServlet</servlet-name>
+		<url-pattern>/echo</url-pattern>
+	</servlet-mapping>
+
 	<!-- The mapping of a request to a servlet involves TWO separate 
 		mappings. One for the servlet application and then one for
 		the servlets contained within that application! 
@@ -41,7 +62,8 @@
 		<servlet-name>HelloServlet</servlet-name>
 		<!-- string pattern used to delegate requests to the mapped
 			servlet  -->
-		<url-pattern>/hello</url-pattern>
+		<url-pattern>/hello/*</url-pattern>
 	</servlet-mapping>
-
 </web-app>
+
+
