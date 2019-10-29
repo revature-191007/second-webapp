@@ -1,0 +1,47 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<!-- The deployment descriptor (web.xml) file is used to declare how Tomcat 
+	should integrate with your servlet application. The primary usage for us 
+	is going to be registering servlet classes, such that Tomcat knows how to 
+	delegate requests to your servlet classes. There are two primary tags for 
+	this: <servlet> and <servlet-mapping> <servlet> is used to declare a servlet 
+	and its class <servlet-mapping> is used to declare URI mappings to a servlet 
+	declared using the <servlet> tag. -->
+
+
+<web-app> <!-- Root tag - <web-app> -->
+	<display-name>Archetype Created Web Application</display-name>
+
+	<servlet>
+		<!-- web.xml identifier - can be arbitrary -->
+		<servlet-name>HelloServlet</servlet-name>
+		<servlet-class>com.revature.servlets.HelloServlet</servlet-class>
+	</servlet>
+
+	<!-- The mapping of a request to a servlet involves TWO separate 
+		mappings. One for the servlet application and then one for
+		the servlets contained within that application! 
+		The application mapping is done within tomcat's configuration
+		and is NOT a part of the web.xml. If you forget this, you will
+		drive yourself absolutely completely crazy wondering why none
+		your requests are working. By default this context is the name
+		of the application itself.
+		
+		Given this, a valid URL for mapping to the HelloServlet would 
+		look like this:
+		
+		http://localhost:8080/second-webapp/hello
+		
+		-->
+
+	<servlet-mapping>
+		<!-- Identifier matching some servlet defined in the <servlet> tag -->
+		<servlet-name>HelloServlet</servlet-name>
+		<!-- string pattern used to delegate requests to the mapped
+			servlet  -->
+		<url-pattern>/hello</url-pattern>
+	</servlet-mapping>
+
+</web-app>
