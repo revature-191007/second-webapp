@@ -3,6 +3,7 @@ package com.revature.servlets;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,9 @@ public class SessionServlet extends HttpServlet {
 				this.getServletContext().getInitParameter("appparam");
 		System.out.println(appParam);
 		
+		// Add CORS headers
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Headers", "content-type");
 		super.service(request, response);
 		
 	}
@@ -40,11 +44,18 @@ public class SessionServlet extends HttpServlet {
 		ObjectMapper om = new ObjectMapper();
 		Credentials credentials = om.readValue(request.getReader(), Credentials.class);
 		
-		// Get or create session 
+		// Get or create session
+		// Supplies a JSESSIONID cookie
 		HttpSession session = request.getSession();
+		
+		Cookie cookie = new Cookie("my-cookie", "some-value");
+		response.addCookie(cookie);
 		
 		// set username on session
 		session.setAttribute("username", credentials.getUsername());
+		
+
+		
 		response.setStatus(200);		
 	}
 	
