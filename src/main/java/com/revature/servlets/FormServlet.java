@@ -12,6 +12,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Person;
 
 public class FormServlet extends HttpServlet {
+	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			response.getWriter().write("Hello everyone!");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException {
